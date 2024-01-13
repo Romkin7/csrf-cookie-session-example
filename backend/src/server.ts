@@ -14,12 +14,7 @@ const COOKIE_SECRET = process.env.COOKIE_SECRET;
 app.set('port', process.env.port || 8080);
 app.set('ip', process.env.IP || '127.0.0.1');
 
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(
-    cors(CORS_OPTIONS),
-);
-app.use(cookieParser());
+
 
 const PORT = app.get('port');
 const IP = app.get('ip');
