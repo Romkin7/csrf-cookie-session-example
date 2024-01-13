@@ -1,0 +1,19 @@
+{
+    "name": "csrf-with-cookie-and-session",
+    "description": "CSRF token protection with Cookies and Sessions",
+    "license": "MIT",
+    "devDependencies": {
+        "husky": "8.0.3",
+        "prettier": "3.2.1"
+    },
+    "scripts": {
+        "lint": "(cd backend && npm run lint) && (cd frontend && npm run lint)",
+        "dev": "npm run dev-backend & npm run dev-frontend",
+        "dev-backend": "(cd backend && npm run dev)",
+        "dev-frontend": "(cd frontend && npm run dev)",
+        "install": "(cd frontend && npm install) && (cd backend && npm install)",
+        "prepare": "husky install",
+        "prettier:test": "prettier --check \"{backend,frontend}/**/*.ts*\"",
+        "prettier:fix": "prettier --write \"{backend,frontend}/**/*.ts*\""
+    }
+}
