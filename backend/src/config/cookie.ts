@@ -13,7 +13,7 @@ class COOKIE {
     constructor(cookie: CookieOptions) {
         this.maxAge = cookie.maxAge || Date.now() + 30000;
         this.domain = cookie.domain || '127.0.0.1';
-        this.secure = cookie.secure || true;
+        this.secure = cookie.secure || false;
         this.httpOnly = cookie.httpOnly || true;
         this.expires = cookie.expires || new Date(Date.now() + 30000);
         this.path = cookie.path || '/';

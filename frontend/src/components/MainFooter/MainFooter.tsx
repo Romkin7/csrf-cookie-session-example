@@ -7,7 +7,7 @@ const MainFooter: FC = () => {
           <Container>
               <Row>
                   <Col className="col-md-12">
-                      <h3>CSRF - Cookie - Session - Example</h3>
+                      <h3>CSRF, Cookie & Session Example</h3>
                       <p>All rights reserved, Roman Tuomisto 2024</p>
                   </Col>
               </Row>
