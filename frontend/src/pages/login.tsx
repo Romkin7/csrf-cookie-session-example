@@ -52,7 +52,6 @@ const LoginPage: FC = () => {
                         isVisible: true,
                     }),
                 );
-               
             })
             .catch((error) => {
                 dispatch(

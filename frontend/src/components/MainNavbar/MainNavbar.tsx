@@ -16,6 +16,9 @@ const MainNavbar: FC = () => {
                     <NavLink>
                         <Link to="/login">Login</Link>
                     </NavLink>
+                    <NavLink>
+                        <Link to="/signup">Sign Up</Link>
+                    </NavLink>
                 </Nav>
             </Container>
         </Navbar>

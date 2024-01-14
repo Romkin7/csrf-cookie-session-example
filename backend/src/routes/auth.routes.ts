@@ -5,13 +5,12 @@ import { ObjectId } from 'mongoose';
 import ErrorMessages from '../messages/errorMessages';
 import errorMessages from '../messages/errorMessages';
 import successMessages from '../messages/successMessages';
-import COOKIE from '../config/cookie';
 
 const router = Router();
 
 router.post('/auth/signup', async (req: Request, res: Response) => {
     try {
-        const role = await Role.findOne({ type: 'basic' });
+        const role = await Role.findOne({ type: 'user' });
         const user = new User();
         user.email = req.body.email;
         user.name = req.body.name;
@@ -30,7 +29,6 @@ router.post('/auth/signup', async (req: Request, res: Response) => {
 
 router.post('/auth/login', async (req: Request, res: Response) => {
     try {
-        console.log(req.body);
         // Tries to find the user matching the given username
         const user = (await User.findOne({
             email: req.body.email,
@@ -41,12 +39,11 @@ router.post('/auth/login', async (req: Request, res: Response) => {
                 .json({ message: ErrorMessages.wrongEmailOrPassword });
             // Check if the password is valid
         } else if (user && user.comparePasswords(req.body.password)) {
-            return res
-                .cookie('sessionId', '545', new COOKIE({}).getCookie())
-                .status(200)
-                .json({
+            return res.status(200).json(
+                JSON.stringify({
                     message: 'You are now logged in successfully',
-                });
+                }),
+            );
         } else {
             // Throws an error if credentials are not valid
             return res

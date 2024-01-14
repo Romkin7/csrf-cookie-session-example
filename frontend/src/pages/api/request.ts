@@ -1,4 +1,4 @@
-import HttpMethods from "../../@types/httpMethods";
+import HttpMethods from '../../@types/httpMethods';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IRequestOptions {
@@ -20,9 +20,19 @@ async function request({
         },
         ...(body && { body: JSON.stringify(body) }),
     })
-        .then((response) => response.json())
-        .then((data) => data)
-        .catch((error) => error);
+        .then(async (response) => {
+            if (!response.ok) {
+                throw response;
+            }
+            return await response.json();
+        })
+        .then((data) => {
+            return data;
+        })
+        .catch(async (error) => {
+            const errorResponse = await error.json();
+            throw errorResponse;
+        });
 }
 
 export default request;

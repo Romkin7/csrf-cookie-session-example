@@ -10,6 +10,7 @@ interface IFlashMessageProps {
 type FlashMessageProps = PropsWithChildren<IFlashMessageProps>;
 
 const FlashMessage: FC<FlashMessageProps> = ({ children, variant }) => {
+    console.log(variant);
     const flashMessageStyles = clsx({
         ['flashMessage']: true,
         ['alert']: true,

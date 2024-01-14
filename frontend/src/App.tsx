@@ -12,6 +12,7 @@ import HomePage from './pages/home';
 import LoggedOutRoute from './LoggedOutRoute';
 import ProtectedRoute from './ProtectedRoute';
 import ProfilePage from './pages/profile';
+import SignUpPage from './pages/signup';
 
 const App: FC = () => {
     const flashMessage = useSelector((state: AppState) => state.flashMessage);
@@ -48,6 +49,16 @@ const App: FC = () => {
                         }
                     >
                         <Route path="/login" element={<LoginPage />} />
+                    </Route>
+                    <Route
+                        element={
+                            <LoggedOutRoute
+                                userId={loggedInUser?.user?._id as string}
+                                isAuthenticated={loggedInUser.isAuthenticated}
+                            />
+                        }
+                    >
+                        <Route path="/signup" element={<SignUpPage />} />
                     </Route>
                     <Route
                         element={

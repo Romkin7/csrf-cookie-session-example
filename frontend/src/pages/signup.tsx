@@ -88,7 +88,7 @@ const SignUpPage: FC = () => {
                             <Container fluid={true}>
                                 <Row className="justify-content-md-center">
                                     <Col className="col-md-12">
-                                        <h2>Login</h2>
+                                        <h2>Sign Up</h2>
                                     </Col>
                                 </Row>
                                 <Row className="flex-column justify-content-md-center">
@@ -103,6 +103,18 @@ const SignUpPage: FC = () => {
                                                 aria-label="Email"
                                                 name="email"
                                                 aria-describedby="email-field"
+                                            />
+                                        </InputGroup>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Text id="email-field">
+                                                name
+                                            </InputGroup.Text>
+                                            <Form.Control
+                                                onChange={handleChange}
+                                                placeholder="Name"
+                                                aria-label="Name"
+                                                name="name"
+                                                aria-describedby="name-field"
                                             />
                                         </InputGroup>
                                         <InputGroup className="mb-3">
@@ -124,7 +136,7 @@ const SignUpPage: FC = () => {
                                             type="submit"
                                             className="btn-success"
                                         >
-                                            Login
+                                            Sign up
                                         </Button>
                                     </Col>
                                 </Row>
