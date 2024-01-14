@@ -2,10 +2,10 @@ import { Router, Request, Response } from 'express';
 import User, { UserDocument } from '../models/users.model';
 import Role from '../models/roles.model';
 import { ObjectId } from 'mongoose';
-import mongoDBIdToString from '../utils/mongoDBIdToString';
 import ErrorMessages from '../messages/errorMessages';
 import errorMessages from '../messages/errorMessages';
 import successMessages from '../messages/successMessages';
+import COOKIE from '../config/cookie';
 
 const router = Router();
 
@@ -14,6 +14,7 @@ router.post('/auth/signup', async (req: Request, res: Response) => {
         const role = await Role.findOne({ type: 'basic' });
         const user = new User();
         user.email = req.body.email;
+        user.name = req.body.name;
         user.password = req.body.password;
         user.roles.push(role._id as unknown as ObjectId);
         const newUser = await user.save();
@@ -40,14 +41,12 @@ router.post('/auth/login', async (req: Request, res: Response) => {
                 .json({ message: ErrorMessages.wrongEmailOrPassword });
             // Check if the password is valid
         } else if (user && user.comparePasswords(req.body.password)) {
-           
-            
-        
-
-            return res.status(200).json({
-                message: 'You are now logged in successfully',
-                
-            });
+            return res
+                .cookie('sessionId', '545', new COOKIE({}).getCookie())
+                .status(200)
+                .json({
+                    message: 'You are now logged in successfully',
+                });
         } else {
             // Throws an error if credentials are not valid
             return res
@@ -69,7 +68,7 @@ router.delete(
                     .status(400)
                     .json({ message: errorMessages.invalidUserId });
             }
-            
+
             return response
                 .status(200)
                 .json({ message: successMessages.loggedOutMessage });

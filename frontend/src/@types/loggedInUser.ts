@@ -1,10 +1,8 @@
-import { ObjectId } from 'mongoose';
 import IRole from './role';
 
 interface BaseUser {
-    _id: ObjectId;
+    _id: string;
     email: string;
-    name: string;
     createdAt: Date;
     updatedAt: Date;
     history: string[];
@@ -15,16 +13,10 @@ export interface IBaseLoggedInUser extends BaseUser {
 }
 
 export interface ILoggedInUser {
-    user: IBaseLoggedInUser;
+    user: IBaseLoggedInUser | null;
     isAdmin: boolean;
     isSuperAdmin: boolean;
     isAuthenticated: boolean;
 }
 
-interface IUser extends BaseUser {
-    getExportableUser(): unknown;
-    password: string;
-    roles: ObjectId[];
-}
-
-export default IUser;
+export default ILoggedInUser;

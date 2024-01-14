@@ -11,6 +11,7 @@ import { IBaseLoggedInUser } from '../@types/user';
 
 export interface UserDocument extends Document {
     email: string;
+    name: string;
     password: string;
     roles: ObjectId[];
     getExportableUser: () => IBaseLoggedInUser;
@@ -21,6 +22,7 @@ const UserSchema = new Schema(
     {
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
+        name: { type: String },
         roles: [{ type: Schema.Types.ObjectId, ref: 'Role' }],
         history: [{ type: String }],
     },

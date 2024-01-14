@@ -1,16 +1,21 @@
 import { FC } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, NavLink } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './MainNavbar.scss';
 
 const MainNavbar: FC = () => {
     return (
-        <Navbar expand="lg" className="bg-primary-subtle">
+        <Navbar expand="lg" className="bg-indigo color-light">
             <Container>
                 <Nav>
-                    <Navbar.Brand href="#home">
-                        CSRF - Cookie - Session
+                    <Navbar.Brand>
+                        <Link to="/">CSRF - Cookie - Session</Link>
                     </Navbar.Brand>
+                    <NavLink>
+                        <Link to="/login">Login</Link>
+                    </NavLink>
                 </Nav>
             </Container>
         </Navbar>
